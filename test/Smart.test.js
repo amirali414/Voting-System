@@ -287,27 +287,19 @@ contract("Smart", accounts => {
                                                 2e18
                                         );
                                 });
-                        });
-
-
-
-                        it("Check totalValue", async () => {
-                                var total = await con.totalValue.call({
-                                        from: alice
+                                it("Check totalValue", async () => {
+                                        var total = await con.totalValue.call({
+                                                from: alice
+                                        });
+                                        assert.equal(
+                                                total.toString(),
+                                                2e18.toString()
+                                        );
                                 });
-                                assert.equal(
-                                        total.toString(),
-                                        2e18.toString()
-                                );
                         });
-
-
-                        
                 });
-                // describe("Winner selection", async () => {
-                //         it("The winner was chosen only by Owner", async () => {
-                //                 // await con.winnerSelection();
-                //         });
-                // });
+                describe("Winner selection", async () => {
+                        it("Only Owner has access to this function")
+                });
         });
 });
