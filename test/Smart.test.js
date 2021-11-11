@@ -299,7 +299,25 @@ contract("Smart", accounts => {
                         });
                 });
                 describe("Winner selection", async () => {
-                        it("Only Owner has access to this function")
+                        it("Only Owner has access to this function", async () => {
+                                var status = false;
+                                try{
+                                        await con.winnerSelection(0,{
+                                                from: bob
+                                        });
+                                }catch{
+                                        status = true;
+                                }
+                                assert.equal(
+                                        status,
+                                        true
+                                );
+                        });
+                        it("Winner Selection", async () => {
+                                const result = await con.winnerSelection(0, {
+                                        from: alice
+                                });
+                        });
                 });
         });
 });
