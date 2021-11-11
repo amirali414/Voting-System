@@ -299,6 +299,20 @@ contract("Smart", accounts => {
                         });
                 });
                 describe("Winner selection", async () => {
+                        var result2;
+                        var address;
+                        var season;
+                        var uniqueId;
+                        var total;
+                        var expectedEventResult;
+                        before(() => {
+                                expectedEventResult = {
+                                        _addr: alice,
+                                        _season: 0,
+                                        _uniqueId: 0,
+                                        _total: 2e18
+                                };
+                        });
                         it("Only Owner has access to this function", async () => {
                                 var status = false;
                                 try{
@@ -313,9 +327,71 @@ contract("Smart", accounts => {
                                         true
                                 );
                         });
-                        it("Winner Selection", async () => {
-                                const result = await con.winnerSelection(0, {
+                        it("Winner Selection tx", async () => {
+                                result2 = await con.winnerSelection(0, {
                                         from: alice
+                                });
+
+                        });
+                        describe("Win function emit", async () => {
+                                before(() => {
+                                        address = result2.logs[0].args._addr;
+                                        season = result2.logs[0].args._season;
+                                        uniqueId = result2.logs[0].args._uniqueId;
+                                        total = result2.logs[0].args._total;
+                                });
+                                it("winnerSelection emit `_addr`", async () => {
+                                        assert.equal(
+                                                address,
+                                                expectedEventResult._addr
+                                        );
+                                });
+                                it("winnerSelection emit `_season`", async () => {
+                                        assert.equal(
+                                                season,
+                                                expectedEventResult._season
+                                        );
+                                });
+                                it("winnerSelection emit `_uniqueId`", async () => {
+                                        assert.equal(
+                                                uniqueId,
+                                                expectedEventResult._uniqueId
+                                        );
+                                });
+                                it("winnerSelection emit `_total`", async () => {
+                                        assert.equal(
+                                                total,
+                                                expectedEventResult._total
+                                        );
+                                });
+                        });
+                        describe("Check variables", async () => {
+                                it("variable `season`", async () => {
+                                        var result = await con.season.call({
+                                                from: alice
+                                        });
+                                        assert.equal(
+                                                result.toString(),
+                                                "1"
+                                        );
+                                });
+                                it("variable `uniqueId`", async () => {
+                                        var result = await con.uniqueId.call({
+                                                from: alice
+                                        });
+                                        assert.equal(
+                                                result.toString(),
+                                                "0"
+                                        );
+                                });
+                                it("variable `totalValue`", async () => {
+                                        var result = await con.season.call({
+                                                from: alice
+                                        });
+                                        assert.equal(
+                                                result.toString(),
+                                                "1"
+                                        );
                                 });
                         });
                 });
