@@ -1,5 +1,5 @@
 const SmartICO = artifacts.require('SmartICO');
-
+// test smart ico
 contract("Smart", accounts => {
         var con;
         const emptyAddress = '0x0000000000000000000000000000000000000000';

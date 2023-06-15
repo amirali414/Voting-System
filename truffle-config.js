@@ -83,6 +83,7 @@ module.exports = {
     solc: {
       version: "0.8.7",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      //
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
       //    enabled: false,
@@ -102,6 +103,7 @@ module.exports = {
   //
   // After you backed up your artifacts you can utilize db by running migrate as follows:
   // $ truffle migrate --reset --compile-all
+  //
   //
   // db: {
     // enabled: false,

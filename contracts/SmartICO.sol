@@ -183,10 +183,11 @@ contract SmartICO {
         /// @dev Return voter related to address.
         /// @param _addr address of voter.
         /// @return Vote
+        
         function getVoter (address _addr) public view returns (Vote memory) {
                 return Voters[season][_addr];
         }
-
+	//vote limit
         function changeMax (uint _newValue) public onlyOwner returns (bool) {
                 max = _newValue;
                 return true;
